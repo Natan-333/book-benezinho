@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "TB_PJ", uniqueConstraints = {@UniqueConstraint(name = "UK_PJ_CNPJ", columnNames = "NR_CNPJ")})
-@DiscriminatorValue("PJ")
+@Table(name = "TB_PJ", uniqueConstraints = {@UniqueConstraint(name = "UK_PJ_CNPJ", columnNames = "NR_CNPJ")
+})
+
 public class PessoaJuridica extends Pessoa {
 
     @Column(name = "NR_CNPJ", nullable = false)
