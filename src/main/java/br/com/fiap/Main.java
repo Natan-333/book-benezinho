@@ -14,6 +14,8 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
+
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory( "oracle", getProperties() );
         EntityManager manager = factory.createEntityManager();
 
