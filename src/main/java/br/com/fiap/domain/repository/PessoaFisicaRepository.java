@@ -22,7 +22,6 @@ public class PessoaFisicaRepository implements Repository<PessoaFisica, Long> {
         EntityManager manager = factory.createEntityManager();
         List<PessoaFisica> list = manager.createQuery(jpql).getResultList();
         manager.close();
-
         return list;
     }
 
@@ -31,31 +30,26 @@ public class PessoaFisicaRepository implements Repository<PessoaFisica, Long> {
         EntityManager manager = factory.createEntityManager();
         PessoaFisica pessoaFisica = manager.find(PessoaFisica.class, id);
         manager.close();
-
         return pessoaFisica;
     }
 
     @Override
-    public List<PessoaFisica> findByName(String name) {
-        String jpql = "FROM PessoaFisica p WHERE p.name =: name";
+    public List<PessoaFisica> findByName(String texto) {
+        String jpql = "FROM PessoaFisica p where Lower(p.name)=:name";
         EntityManager manager = factory.createEntityManager();
-
         Query query = manager.createQuery(jpql);
-        query.setParameter("name", name);
+        query.setParameter("name", texto);
         List<PessoaFisica> list = query.getResultList();
-
         manager.close();
-
         return list;
     }
 
     @Override
-    public PessoaFisica persist(PessoaFisica body) {
+    public PessoaFisica persist(PessoaFisica pessoaFisica) {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
-        manager.persist(body);
+        manager.persist(pessoaFisica);
         manager.getTransaction().commit();
-
-        return body;
+        return pessoaFisica;
     }
 }
